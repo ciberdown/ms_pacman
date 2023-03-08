@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ms pacman</title>
+    <link rel="stylesheet" href="output.css" />
+    <script defer src="pac_map.js"></script>
+    <script defer src="cookies.js"></script>
+    <script defer src="./ghosts.js"></script>
+    <script defer src="./pacman.js"></script>
+    <script defer src="./app.js"></script>
+  </head>
+  <body id="game" class="h-[100vh] w-full bg-black">
+    <canvas id="canvas" height="500" width="500"></canvas>
+    <img
+      id="pac_man"
+      class="absolute top-[200px] w-5"
+      src="../assets/pac-man.gif"
+      alt="pacman"
+    />
+    <img id="ghost-one" class="absolute w-5 top-[60px] left-[380px]" src="../assets/ghost-one.gif" alt="" />
+    <img id="ghost-two" class="absolute w-5 top-[20px] left-[340px]" src="../assets/ghost-two.gif" alt="" />
+    <img id="ghost-three" class="absolute w-5 top-[260px] left-[200px]" src="../assets/ghost-three.gif" alt="" />
+    <p class="absolute top-0 left-[430px] inline-block text-white">scores:</p>
+    <p id="score" class="absolute top-0 left-[490px] inline-block text-white">
+      0
+    </p>
+  </body>
+</html>
