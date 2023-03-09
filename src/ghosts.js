@@ -4,7 +4,7 @@ class Ghost {
     this.my_ghost = document.getElementById(ghost_id);
     this.directions = ["right", "left", "top", "down"];
     this.map = map;
-    ;
+    this.game_failed = false;
   }
   get_top() {
     return this.my_ghost.getBoundingClientRect().top;
@@ -78,20 +78,21 @@ class Ghost {
   }
   move_rnd_ghost() {
     let rnd = Math.floor(Math.random() * this.directions.length);
-    const interval = setInterval(() => {
-      if (this.move(this.directions[rnd]) === "wall") {
-        rnd = Math.floor(Math.random() * this.directions.length);
-      } else {
-        this.move(this.directions[rnd]);
-      }
+    const check_game_failer = setInterval(() => {
       if (
         this.get_pacman_pos()[0] === this.get_ghost_pos()[0] &&
         this.get_pacman_pos()[1] === this.get_ghost_pos()[1]
       ) {
-        clearInterval(interval);
-        console.log("finished");
+        clearInterval(ghosts_move_interval);
+        clearInterval(check_game_failer);
+        this.game_failed = true;
+        document.getElementById("fail_alert").style.visibility = "visible";
       }
-    }, 1000);
+    }, 100);
+    const ghosts_move_interval = setInterval(() => {
+      if (this.move(this.directions[rnd]) === "wall") {
+        rnd = Math.floor(Math.random() * this.directions.length);
+      }
+    }, 500);
   }
 }
-

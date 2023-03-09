@@ -9,6 +9,7 @@ class Ms_pacman {
     this.map = map;
     this.clear_cookie = clear_cookie;
     this.this_cookies = this_cookies;
+    this._game_faild = false;
 
     //run at first
     this.game.addEventListener("keydown", (e) => {
@@ -17,6 +18,12 @@ class Ms_pacman {
       e.key === "s" && this.move("down");
       e.key === "w" && this.move("up");
     });
+  }
+  set_gameFaild(bool) {
+    this._game_faild = bool;
+  }
+  get_pacman() {
+    return this.pac_man;
   }
   animation_direction(new_dir) {
     switch (new_dir) {
@@ -29,7 +36,12 @@ class Ms_pacman {
     }
   }
   collision(x, y) {
-    if (y > this.map.length - 1 || x > this.map[0].length - 1 || x < 0 || y < 0) {
+    if (
+      y > this.map.length - 1 ||
+      x > this.map[0].length - 1 ||
+      x < 0 ||
+      y < 0
+    ) {
       return true;
     } else if (this.map[y][x] === 1) {
       return true;
@@ -50,6 +62,7 @@ class Ms_pacman {
     }
   }
   move(direction) {
+    if(this._game_faild) return false;
     let pos = this.pac_man.getBoundingClientRect();
     let x_pos = pos.left / this.box_size;
     let y_pos = pos.top / this.box_size;
@@ -71,6 +84,7 @@ class Ms_pacman {
     } else if (!this.check_collision(x_pos, y_pos, direction)) {
       this.animation_direction(direction);
       this.current_direction = direction;
+      
       switch (direction) {
         case "right":
           x = parseInt(getComputedStyle(this.pac_man).left);

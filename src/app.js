@@ -5,10 +5,16 @@ const cookies = new Cookies("green", my_map);
 cookies.make_new_cookies(100);
 const this_cookies = cookies.get_this();
 const map = my_map.get_map();
+const my_pacman = new Ms_pacman(map, cookies.clear_cookie, this_cookies);
 const ghost_one = new Ghost("ghost-one");
 const ghost_two = new Ghost("ghost-two");
 const ghost_three = new Ghost("ghost-three");
 ghost_one.move_rnd_ghost();
 ghost_two.move_rnd_ghost();
 ghost_three.move_rnd_ghost();
-const pacman = new Ms_pacman(map, cookies.clear_cookie, this_cookies);
+setInterval(() => {
+  const faliler_alert = false;
+  ghost_one.game_failed && my_pacman.set_gameFaild(true) && (faliler_alert = true);
+  ghost_two.game_failed && my_pacman.set_gameFaild(true) && (faliler_alert = true);
+  ghost_three.game_failed && my_pacman.set_gameFaild(true) && (faliler_alert = true);
+}, 100);
