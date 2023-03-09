@@ -1,2 +1,14 @@
-make_map("red");
-make_new_cookies(200);
+const my_map = new Map("red");
+my_map.make_map();
+const canvas = my_map.get_canvas();
+const cookies = new Cookies("green", my_map);
+cookies.make_new_cookies(100);
+const this_cookies = cookies.get_this();
+const map = my_map.get_map();
+const ghost_one = new Ghost("ghost-one");
+const ghost_two = new Ghost("ghost-two");
+const ghost_three = new Ghost("ghost-three");
+ghost_one.move_rnd_ghost();
+ghost_two.move_rnd_ghost();
+ghost_three.move_rnd_ghost();
+const pacman = new Ms_pacman(map, cookies.clear_cookie, this_cookies);

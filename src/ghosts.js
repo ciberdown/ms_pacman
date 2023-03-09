@@ -1,8 +1,10 @@
-class ghost {
+class Ghost {
   constructor(ghost_id) {
     this.ghost_id = ghost_id;
     this.my_ghost = document.getElementById(ghost_id);
     this.directions = ["right", "left", "top", "down"];
+    this.map = map;
+    ;
   }
   get_top() {
     return this.my_ghost.getBoundingClientRect().top;
@@ -37,8 +39,8 @@ class ghost {
   }
   get_pacman_pos() {
     const pac_man = document.getElementById("pac_man");
-    const x_pos = pac_man.getBoundingClientRect().left / box_size;
-    const y_pos = pac_man.getBoundingClientRect().top / box_size;
+    const x_pos = pac_man.getBoundingClientRect().left / 20;
+    const y_pos = pac_man.getBoundingClientRect().top / 20;
     return [x_pos, y_pos];
   }
   collision(dir) {
@@ -92,9 +94,4 @@ class ghost {
     }, 1000);
   }
 }
-const ghost_one = new ghost("ghost-one");
-const ghost_two = new ghost("ghost-two");
-const ghost_three = new ghost("ghost-three");
-ghost_one.move_rnd_ghost();
-ghost_two.move_rnd_ghost();
-ghost_three.move_rnd_ghost();
+
